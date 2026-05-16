@@ -1,32 +1,42 @@
-/**
- * One-off auth test — not part of the package, safe to delete after use.
- * Run with: node test-auth.js
- */
-
-import { getAuthenticatedClient } from './src/auth.js';
+import dotenv from 'dotenv';
 import { google } from 'googleapis';
-import { homedir } from 'os';
-import { join } from 'path';
+import { getAuthenticatedClient } from './src/auth.js';
 
-const TOKEN_PATH = join(homedir(), '.google-marketing-mcp', 'token.json');
+// override: false — never clobber vars already set in the shell environment.
+// The Growth Intelligence .env uses GOOGLE_ADS_CLIENT_ID, not GOOGLE_CLIENT_ID,
+// so without this flag dotenv would write empty strings over the real credentials.
+dotenv.config({
+  path: '/Users/ajinkyathakare/Claude_code/Ticmint/Growth Intelligence/growth-intelligence/.env',
+  override: false,
+});
+
+const propertyId = process.env.GA4_PROPERTY_ID?.replace(/^properties\//, '');
+if (!propertyId) {
+  console.error('❌  GA4_PROPERTY_ID not found in .env at the specified path');
+  process.exit(1);
+}
+
+const auth = await getAuthenticatedClient();
+console.log('auth check:', auth.credentials?.access_token ? 'token present' : 'token missing');
+
+const analyticsData = google.analyticsdata({ version: 'v1beta', auth });
 
 try {
-  const client = await getAuthenticatedClient();
+  const res = await analyticsData.properties.runReport({
+    property: `properties/${propertyId}`,
+    requestBody: {
+      dateRanges: [{ startDate: '7daysAgo', endDate: 'today' }],
+      metrics: [{ name: 'sessions' }],
+    },
+  });
 
-  // Confirm the token works by fetching the connected account's email
-  const oauth2 = google.oauth2({ version: 'v2', auth: client });
-  const { data } = await oauth2.userinfo.get();
-
-  // Confirm the token file exists and has correct permissions
-  const { promises: fs } = await import('fs');
-  const stat = await fs.stat(TOKEN_PATH);
-  const mode = (stat.mode & 0o777).toString(8);
-
-  console.log(`Auth successful — token saved`);
-  console.log(`Account : ${data.email}`);
-  console.log(`Token   : ${TOKEN_PATH}`);
-  console.log(`Mode    : ${mode} (should be 600)`);
+  const sessions = res.data?.rows?.[0]?.metricValues?.[0]?.value ?? '(no data)';
+  console.log(`✅  Token valid. GA4 property ${propertyId} — sessions (last 7 days): ${sessions}`);
 } catch (err) {
-  console.error(`Auth failed: ${err.message}`);
+  console.error('❌  GA4 API call failed');
+  console.error('status :', err.status ?? err.code ?? 'n/a');
+  console.error('message:', err.message);
+  console.error('errors :', JSON.stringify(err.errors ?? err.response?.data ?? null, null, 2));
+  console.error('full   :', err);
   process.exit(1);
 }
