@@ -4,7 +4,7 @@
 
 If you find a security vulnerability in this project, please **do not open a public GitHub issue**. Instead, email:
 
-**security@thegeneralist.company**
+**join@thegeneralist.company**
 
 Include:
 - A description of the vulnerability
