@@ -12,7 +12,7 @@ import { StdioServerTransport } from '@modelcontextprotocol/sdk/server/stdio.js'
 import { getClient } from './client.js';
 
 // Tool registration — imported as each phase is built
-// import { registerGa4Tools } from './tools/ga4.js';
+import { registerGa4Tools } from './tools/ga4.js';
 // import { registerGscTools } from './tools/gsc.js';
 // import { registerSheetsTools } from './tools/sheets.js';
 // import { registerGtmTools } from './tools/gtm.js';
@@ -28,7 +28,7 @@ async function main() {
   const client = await getClient();
 
   // Phase 2–3: uncomment as each tool file is added
-  // registerGa4Tools(server, client);
+  registerGa4Tools(server, client);
   // registerGscTools(server, client);
   // registerSheetsTools(server, client);
   // registerGtmTools(server, client);
