@@ -13,7 +13,7 @@ Connect Claude (and other AI assistants) directly to your Google marketing data.
 
 ## What this is
 
-A [Model Context Protocol](https://modelcontextprotocol.io) server that wraps five Google APIs into 44 tools your AI assistant can call directly. You connect it once, and from then on you can ask Claude anything about your Google marketing data and get a real answer — not a hallucination, not a guess, actual data from your accounts.
+A [Model Context Protocol](https://modelcontextprotocol.io) server that wraps five Google APIs into 44 tools your AI assistant can call directly — a Google Analytics MCP, Google Search Console MCP, Google Tag Manager MCP, and PageSpeed Insights MCP in one package. You connect it once, and from then on you can ask Claude anything about your Google marketing data and get a real answer — not a hallucination, not a guess, actual data from your accounts.
 
 **What it replaces:** exporting CSVs, clicking through dashboards, writing custom reports, asking your developer to pull data.
 
