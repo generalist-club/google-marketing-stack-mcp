@@ -16,7 +16,7 @@ import { registerGa4Tools } from './tools/ga4.js';
 import { registerGscTools } from './tools/gsc.js';
 import { registerSheetsTools } from './tools/sheets.js';
 import { registerGtmTools } from './tools/gtm.js';
-// import { registerPagespeedTools } from './tools/pagespeed.js';
+import { registerPagespeedTools } from './tools/pagespeed.js';
 
 async function main() {
   const server = new McpServer({
@@ -32,7 +32,7 @@ async function main() {
   registerGscTools(server, client);
   registerSheetsTools(server, client);
   registerGtmTools(server, client);
-  // registerPagespeedTools(server);
+  registerPagespeedTools(server);
 
   // Utility tools — available from Phase 1
   registerUtilityTools(server, client);
