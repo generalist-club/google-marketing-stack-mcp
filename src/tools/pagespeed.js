@@ -6,6 +6,10 @@ const BULK_DELAY_MS = 2_000;
 
 function buildUrl(pageUrl, strategy) {
   const params = new URLSearchParams({ url: pageUrl, strategy });
+  // Default is PERFORMANCE only — explicitly request all four categories
+  for (const cat of ['PERFORMANCE', 'ACCESSIBILITY', 'BEST_PRACTICES', 'SEO']) {
+    params.append('category', cat);
+  }
   const key = process.env.PSI_API_KEY;
   if (key) params.set('key', key);
   return `${PSI_BASE}?${params}`;

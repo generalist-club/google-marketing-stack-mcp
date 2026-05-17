@@ -5,6 +5,9 @@ const URL = 'https://ticmint.com';
 
 async function fetchPsi(url, strategy) {
   const params = new URLSearchParams({ url, strategy });
+  for (const cat of ['PERFORMANCE', 'ACCESSIBILITY', 'BEST_PRACTICES', 'SEO']) {
+    params.append('category', cat);
+  }
   const key = process.env.PSI_API_KEY;
   if (key) params.set('key', key);
 
