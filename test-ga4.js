@@ -2,10 +2,7 @@ import dotenv from 'dotenv';
 import { google } from 'googleapis';
 import { getAuthenticatedClient } from './src/auth.js';
 
-dotenv.config({
-  path: '/Users/ajinkyathakare/Claude_code/Ticmint/Growth Intelligence/growth-intelligence/.env',
-  override: false,
-});
+dotenv.config(); // create a .env file from .env.example and fill in your values
 
 const propertyId = process.env.GA4_PROPERTY_ID?.replace(/^properties\//, '');
 if (!propertyId) {

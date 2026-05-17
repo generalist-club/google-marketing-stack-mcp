@@ -2,15 +2,13 @@ import dotenv from 'dotenv';
 import { google } from 'googleapis';
 import { getAuthenticatedClient } from './src/auth.js';
 
-dotenv.config({
-  path: '/Users/ajinkyathakare/Claude_code/Ticmint/Growth Intelligence/growth-intelligence/.env',
-  override: false,
-});
+dotenv.config(); // create a .env file from .env.example and fill in your values
 
-// Use GOOGLE_SHEET_URL from .env, or fall back to the Ticmint GA4 report sheet
-const SHEET_URL =
-  process.env.GOOGLE_SHEET_URL ??
-  'https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms/edit';
+const SHEET_URL = process.env.GOOGLE_SHEET_URL;
+if (!SHEET_URL) {
+  console.error('GOOGLE_SHEET_URL not set — add it to your .env file');
+  process.exit(1);
+}
 
 function extractSheetId(urlOrId) {
   const match = urlOrId.match(/\/spreadsheets\/d\/([a-zA-Z0-9-_]+)/);
