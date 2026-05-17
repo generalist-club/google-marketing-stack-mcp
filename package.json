@@ -1,0 +1,36 @@
+{
+  "name": "@generalist-club/google-marketing-stack-mcp",
+  "version": "1.0.0",
+  "description": "Unified MCP server for Google Analytics 4, Search Console, Sheets, Tag Manager, and PageSpeed — browser OAuth, no config files",
+  "type": "module",
+  "bin": {
+    "google-marketing-stack-mcp": "./src/index.js"
+  },
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.0",
+    "dotenv": "^16.0.0",
+    "googleapis": "^144.0.0",
+    "open": "^10.1.0",
+    "zod": "^3.23.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "mcp",
+    "google-analytics",
+    "google-search-console",
+    "google-sheets",
+    "google-tag-manager",
+    "pagespeed",
+    "claude"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/generalist-club/google-marketing-stack-mcp"
+  }
+}

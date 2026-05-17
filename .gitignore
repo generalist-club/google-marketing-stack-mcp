@@ -70,6 +70,12 @@ web_modules/
 .env.*
 !.env.example
 
+# OAuth token store (written by auth flow, must never be committed)
+.google-marketing-mcp/
+
+# Throwaway auth test — not published to npm
+test-auth.js
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
