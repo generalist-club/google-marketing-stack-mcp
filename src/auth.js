@@ -14,6 +14,7 @@ import { google } from 'googleapis';
 import { promises as fs } from 'fs';
 import { homedir } from 'os';
 import { join } from 'path';
+import { randomUUID } from 'crypto';
 import http from 'http';
 import open from 'open';
 
@@ -109,12 +110,19 @@ async function runBrowserFlow() {
 
     const googleError = url.searchParams.get('error');
     const code = url.searchParams.get('code');
+    const returnedState = url.searchParams.get('state');
 
     if (googleError) {
       res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
       res.end(cancelledHtml());
       server.close();
       rejectCode(new Error('Login cancelled or access denied. Run again to retry.'));
+      return;
+    }
+
+    // Reject callbacks that don't carry the state we sent — prevents auth code injection
+    if (returnedState !== state) {
+      res.writeHead(400).end('Invalid state parameter.');
       return;
     }
 
@@ -154,7 +162,7 @@ async function runBrowserFlow() {
 
   codePromise.finally(() => clearTimeout(timeoutId));
 
-  return { codePromise, redirectUri };
+  return { codePromise, redirectUri, state };
 }
 
 export async function getAuthenticatedClient() {
@@ -184,13 +192,15 @@ export async function getAuthenticatedClient() {
   }
 
   // No saved token — open the browser and capture the callback locally
-  const { codePromise, redirectUri } = await runBrowserFlow();
+  const { codePromise, redirectUri, state } = await runBrowserFlow();
   const oauth2Client = makeClient(redirectUri);
 
+  // state was generated inside runBrowserFlow and is validated on the callback (CSRF protection)
   const authUrl = oauth2Client.generateAuthUrl({
     access_type: 'offline',
     scope: SCOPES,
     prompt: 'consent', // Always request a refresh token
+    state,
   });
 
   console.error('\nOpening browser for Google login...');

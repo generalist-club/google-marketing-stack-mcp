@@ -6,7 +6,7 @@ Connect Claude (and other AI assistants) directly to your Google marketing data.
 "What were our top 10 landing pages last month and which had the worst bounce rate?"
 "Which GSC queries are ranking between position 4 and 10 that we could push to page 1?"
 "Run a GTM audit — are there any orphaned triggers or unused variables?"
-"Compare ticmint.com performance on mobile vs desktop and tell me what to fix first."
+"Compare example.com performance on mobile vs desktop and tell me what to fix first."
 ```
 
 ---
@@ -206,7 +206,7 @@ Add to `~/.codeium/windsurf/mcp_config.json`:
 |---|---|---|---|
 | `GOOGLE_CLIENT_ID` | ✅ | OAuth client ID from GCP | `123456-abc.apps.googleusercontent.com` |
 | `GOOGLE_CLIENT_SECRET` | ✅ | OAuth client secret from GCP | `GOCSPX-...` |
-| `GA4_PROPERTY_ID` | ✅ for GA4 | Numeric GA4 property ID | `387986336` |
+| `GA4_PROPERTY_ID` | ✅ for GA4 | Numeric GA4 property ID | `123456789` |
 | `GSC_SITE_URL` | ✅ for GSC | Your site in Search Console | `sc-domain:example.com` or `https://example.com/` |
 | `GTM_ACCOUNT_ID` | ✅ for GTM | GTM account ID | `12345678` |
 | `GTM_CONTAINER_ID` | ✅ for GTM | GTM container ID | `98765432` |

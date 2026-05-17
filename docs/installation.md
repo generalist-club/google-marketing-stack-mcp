@@ -48,7 +48,7 @@ You need a Google Cloud **Client ID** and **Client Secret** before continuing. I
 
 You'll also need to know your IDs for the Google products you want to use:
 
-**GA4 Property ID** — a number like `387986336`
+**GA4 Property ID** — a number like `123456789`
 Go to Google Analytics → Admin (gear icon, bottom left) → Property Settings → Property ID. Copy the number. Do not include "properties/" — just the digits.
 
 **GSC Site URL** — exactly as it appears in Search Console
@@ -317,7 +317,7 @@ Your AI client can't find Node.js. This happens because GUI apps on Mac don't al
 The env vars in your config JSON aren't being picked up. Double-check that `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in the config are your actual values (not the placeholder text from this guide). Also check for extra spaces or quotes around the values.
 
 **"GA4_PROPERTY_ID is not set" even though it is**
-The property ID includes the `properties/` prefix. Use only the number — `387986336`, not `properties/387986336`.
+The property ID includes the `properties/` prefix. Use only the number — `123456789`, not `properties/123456789`.
 
 **Token stops working after a week**
 The Google OAuth consent screen in Testing mode has a 7-day refresh token limit. Ask your AI to call `reauthenticate`, then log in again when the browser opens. Consider publishing your consent screen (you don't need to submit for review — just change the status from Testing to Production) to remove this limit for your own account.

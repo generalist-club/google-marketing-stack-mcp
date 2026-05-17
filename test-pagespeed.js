@@ -1,7 +1,7 @@
 // No .env needed — PSI works without a key (rate limited but functional)
 
 const PSI_BASE = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
-const URL = 'https://ticmint.com';
+const URL = process.env.PSI_TEST_URL ?? 'https://example.com';
 
 async function fetchPsi(url, strategy) {
   const params = new URLSearchParams({ url, strategy });

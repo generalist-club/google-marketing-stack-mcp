@@ -20,9 +20,10 @@
  *     Workers do not share memory across instances, so in-memory storage will not
  *     work in that environment.
  *
- * Required env var on the host:
- *   ALLOWED_ORIGINS — comma-separated list of origins allowed to poll (optional,
- *                     defaults to allowing the local MCP process via same-host fetch)
+ * Security notes:
+ *   - Auth codes are validated by state UUID before being stored
+ *   - Each code can only be claimed once (deleted on first successful poll)
+ *   - Codes expire after 10 minutes regardless of whether they are claimed
  */
 
 import http from 'http';
@@ -154,6 +155,15 @@ function successPage() {
 </html>`;
 }
 
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 function errorPage(message) {
   return `<!DOCTYPE html>
 <html lang="en">
@@ -173,7 +183,7 @@ function errorPage(message) {
 <body>
   <div class="card">
     <h1>Something went wrong.</h1>
-    <p>${message}</p>
+    <p>${escapeHtml(message)}</p>
   </div>
 </body>
 </html>`;
