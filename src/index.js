@@ -27,7 +27,6 @@ async function main() {
   // Authenticate before registering tools so all tool handlers have a live client
   const client = await getClient();
 
-  // Phase 2–3: uncomment as each tool file is added
   registerGa4Tools(server, client);
   registerGscTools(server, client);
   registerSheetsTools(server, client);
