@@ -73,7 +73,7 @@ web_modules/
 # OAuth token store (written by auth flow, must never be committed)
 .google-marketing-mcp/
 
-# Throwaway test script — not published to npm
+# Throwaway auth test — not published to npm
 test-auth.js
 
 # parcel-bundler cache (https://parceljs.org/)
