@@ -15,7 +15,7 @@ import { getClient } from './client.js';
 import { registerGa4Tools } from './tools/ga4.js';
 import { registerGscTools } from './tools/gsc.js';
 import { registerSheetsTools } from './tools/sheets.js';
-// import { registerGtmTools } from './tools/gtm.js';
+import { registerGtmTools } from './tools/gtm.js';
 // import { registerPagespeedTools } from './tools/pagespeed.js';
 
 async function main() {
@@ -31,7 +31,7 @@ async function main() {
   registerGa4Tools(server, client);
   registerGscTools(server, client);
   registerSheetsTools(server, client);
-  // registerGtmTools(server, client);
+  registerGtmTools(server, client);
   // registerPagespeedTools(server);
 
   // Utility tools — available from Phase 1
