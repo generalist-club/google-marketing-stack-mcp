@@ -38,11 +38,11 @@ This is the part where most people get stuck. Read this section before touching 
 
 ### Step 1 — Use the right GCP project
 
-**The most common mistake:** creating a new GCP project for this. Don't.
+**If you already have a GCP project** that manages your Google Analytics or other Google services, use that one. Go to [console.cloud.google.com](https://console.cloud.google.com), switch between projects, and look for one that has APIs & Services → Enabled APIs showing Analytics Data API, Search Console API, etc.
 
-Use the GCP project that already has your Google Analytics, Search Console, and Sheets APIs enabled. If you create a new project, you will spend 30 minutes enabling APIs and wondering why nothing works.
+**If you don't have a GCP project yet**, create one: go to [console.cloud.google.com](https://console.cloud.google.com), click the project selector in the top nav, click **New Project**, give it any name (e.g. "Marketing MCP"), and click Create. Then continue to Step 2 to enable the APIs.
 
-If you are not sure which project to use: go to [console.cloud.google.com](https://console.cloud.google.com), switch between projects, and look for one that has APIs & Services → Enabled APIs showing Analytics Data API, Search Console API, etc.
+**The most common mistake:** creating a new GCP project when you already have one that works. If you have an existing project with these APIs enabled, use it — you'll skip most of Step 2.
 
 ### Step 2 — Enable all four APIs
 
