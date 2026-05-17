@@ -14,7 +14,7 @@ import { getClient } from './client.js';
 // Tool registration — imported as each phase is built
 import { registerGa4Tools } from './tools/ga4.js';
 import { registerGscTools } from './tools/gsc.js';
-// import { registerSheetsTools } from './tools/sheets.js';
+import { registerSheetsTools } from './tools/sheets.js';
 // import { registerGtmTools } from './tools/gtm.js';
 // import { registerPagespeedTools } from './tools/pagespeed.js';
 
@@ -30,7 +30,7 @@ async function main() {
   // Phase 2–3: uncomment as each tool file is added
   registerGa4Tools(server, client);
   registerGscTools(server, client);
-  // registerSheetsTools(server, client);
+  registerSheetsTools(server, client);
   // registerGtmTools(server, client);
   // registerPagespeedTools(server);
 
