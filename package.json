@@ -1,6 +1,6 @@
 {
   "name": "@generalist-club/google-marketing-stack-mcp",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Unified MCP server for Google Analytics 4, Search Console, Sheets, Tag Manager, and PageSpeed — browser OAuth, no config files",
   "type": "module",
   "bin": {
