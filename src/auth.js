@@ -93,6 +93,7 @@ function wireAutoRefresh(oauth2Client) {
 }
 
 async function runBrowserFlow() {
+  const state = randomUUID();
   let resolveCode, rejectCode;
   const codePromise = new Promise((res, rej) => {
     resolveCode = res;
