@@ -96,6 +96,16 @@ On first run, a browser window opens asking you to log in with Google. Log in, a
 
 **If the browser opens with the wrong Google account:** copy the URL from the terminal and paste it into a browser profile that has your work account signed in.
 
+### Or run it from npm (no clone)
+
+The package is also published on npm, so you can skip the clone:
+
+```bash
+GOOGLE_CLIENT_ID=your_id GOOGLE_CLIENT_SECRET=your_secret npx -y @generalist-club/google-marketing-stack-mcp
+```
+
+To use it from an MCP client, set `"command": "npx"` and `"args": ["-y", "@generalist-club/google-marketing-stack-mcp"]` in the configuration below, instead of `node` with a path to `src/index.js`.
+
 ---
 
 ## Configuration
