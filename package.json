@@ -4,7 +4,7 @@
   "description": "Unified MCP server for Google Analytics 4, Search Console, Sheets, Tag Manager, and PageSpeed — browser OAuth, no config files",
   "type": "module",
   "bin": {
-    "google-marketing-stack-mcp": "./src/index.js"
+    "google-marketing-stack-mcp": "src/index.js"
   },
   "scripts": {
     "start": "node src/index.js"
@@ -31,6 +31,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/generalist-club/google-marketing-stack-mcp"
+    "url": "git+https://github.com/generalist-club/google-marketing-stack-mcp.git"
   }
 }
